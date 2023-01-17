@@ -1,3 +1,14 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  namespace :api do
+    namespace :v1 do
+      resources :bookings, only: [] do
+        collection do      
+          post 'new', to: 'bookings#create', as: :new   # Expecting the route to be: /api/v1/bookings/new
+          get :search
+        end
+        patch :update
+        patch :cancel
+      end
+    end
+  end
 end
